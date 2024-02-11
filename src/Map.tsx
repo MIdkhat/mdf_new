@@ -1,6 +1,7 @@
 import React from 'react'
 import GoogleMapReact from 'google-map-react'
 import { GoogleMap } from '@react-google-maps/api'
+import MenuContainer from './Menu/MenuContainer'
 
 const center = {
   lat: -37.81,
@@ -16,6 +17,7 @@ export const Map = () => {
 
   return (
     <div style={{ height: '100vh', width: '100%' }}>
+      <MenuContainer />
       {/* <GoogleMap
         id="map"
         mapContainerStyle={{
