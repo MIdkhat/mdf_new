@@ -1,16 +1,17 @@
 import React from 'react'
-// import { css } from '@emotion/react'
-import { MapLoader } from './MapLoader'
-import { MapProvider } from './MapProvider'
+import { ContextProvider } from './ContextProvider'
 import initialMapState from './initialMapState'
+import { APIProvider } from '@vis.gl/react-google-maps'
+import MapContainer from './MapContainer'
 
 const App: React.FC = () => {
+  const apiKey = import.meta.env.VITE_APP_GOOGLE_MAPS_API_KEY
   return (
-    <MapProvider initialState={initialMapState}>
-      <div>
-        <MapLoader />
-      </div>
-    </MapProvider>
+    <ContextProvider initialState={initialMapState}>
+      <APIProvider apiKey={apiKey}>
+        <MapContainer />
+      </APIProvider>
+    </ContextProvider>
   )
 }
 

@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { useMapContext } from '../MapProvider'
-import { MapState } from '../types'
 
 interface ButtonProps {
   title: string
@@ -9,9 +7,12 @@ interface ButtonProps {
   backgroundimage: string
   hidden?: boolean
   active?: boolean
-  onClick: (active: boolean, mapState: MapState) => void | (() => void)
+  onClick: (active: boolean) => void
 }
-const StyledButton = styled.button<ButtonProps>`
+
+type StyledButtonProps = Omit<ButtonProps, 'actionType' | 'onClick'>
+
+const StyledButton = styled.button<StyledButtonProps>`
   width: 40px;
   height: 40px;
   background-size: 80px 40px;
@@ -25,7 +26,7 @@ const StyledButton = styled.button<ButtonProps>`
   cursor: pointer;
   outline: none;
   padding: 0;
-  border: 1px solid transparent;
+  border: 1px solid black;
   border-radius: 3px;
   font-size: 12px;
   font-weight: 700;
@@ -44,13 +45,16 @@ const StyledButton = styled.button<ButtonProps>`
 
 const Button: React.FC<ButtonProps> = (props) => {
   const { title, id, backgroundimage, onClick } = props
-  const [active, setActive] = useState(props.active)
+  const [active, setActive] = useState<boolean | undefined>(props.active)
   //   const [hidden, setHidden] = useState(props.hidden)
-  const mapState = useMapContext()
 
-  const handleButtonClick = () => {
+  const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    event.currentTarget.blur()
+    if (active === undefined) {
+      setActive(false)
+    }
     setActive(!active)
-    onClick(!active, mapState)
+    onClick(!active)
   }
 
   return (
