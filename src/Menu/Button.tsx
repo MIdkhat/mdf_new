@@ -9,7 +9,7 @@ interface ButtonProps {
   backgroundimage: string
   hidden?: boolean
   active?: boolean
-  onClick: (active: boolean, mapState: MapState) => void
+  onClick: (active: boolean, mapState: MapState) => void | (() => void)
 }
 const StyledButton = styled.button<ButtonProps>`
   width: 40px;
