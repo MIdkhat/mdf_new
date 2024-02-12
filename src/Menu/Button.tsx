@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import { useMapContext } from '../MapProvider'
+import { MapState } from '../types'
 
 interface ButtonProps {
   title: string
   id: string
   backgroundimage: string
-  hidden: boolean
-  turnedOn: boolean
+  hidden?: boolean
+  active?: boolean
+  onClick?: (active: boolean, mapState: MapState) => void
 }
 const StyledButton = styled.button<ButtonProps>`
   width: 40px;
@@ -32,7 +35,7 @@ const StyledButton = styled.button<ButtonProps>`
   &:hover {
     border-color: red;
   }
-  &.turned-on {
+  &.active {
     background-position: 90% 0%;
     border: 1px solid #3399cc;
     background-color: white;
@@ -40,13 +43,14 @@ const StyledButton = styled.button<ButtonProps>`
 `
 
 const Button: React.FC<ButtonProps> = (props) => {
-  const { title, id, backgroundimage } = props
-  const [turnedOn, setTurnedOn] = useState(props.turnedOn)
+  const { title, id, backgroundimage, onClick } = props
+  const [active, setActive] = useState(props.active)
   //   const [hidden, setHidden] = useState(props.hidden)
+  const mapState = useMapContext()
 
   const handleButtonClick = () => {
-    setTurnedOn(!turnedOn) // Toggle turnedOn state
-    // onClick()
+    setActive(!active)
+    onClick(!active, mapState)
   }
 
   return (
@@ -56,8 +60,7 @@ const Button: React.FC<ButtonProps> = (props) => {
       id={id}
       backgroundimage={backgroundimage}
       hidden={props.hidden}
-      turnedOn={turnedOn}
-      className={turnedOn ? 'turned-on' : ''}
+      className={active ? 'active' : ''}
       onClick={handleButtonClick}
     />
   )

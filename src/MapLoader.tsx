@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Map } from './Map'
+import Map from './Map'
 
 export const MapLoader: React.FC = () => {
   const apiKey = import.meta.env.VITE_APP_GOOGLE_MAPS_API_KEY
