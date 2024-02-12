@@ -12,7 +12,7 @@ import spotButtonImage from '../assets/images/spot-button.png'
 //   toggleReservoirs,
 //   toggleSpots,
 // } from './Actions/togglers'
-import { useMapContext } from '../MapProvider'
+import { useMapContext } from '../ContextProvider'
 import { MapState } from '../types'
 
 const menuStyle: React.CSSProperties = {
