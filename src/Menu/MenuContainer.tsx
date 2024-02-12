@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import Button from './Button'
+import ToggleButton from './ToggleButton'
 import councilImage from '../assets/images/council.png'
 import waterButtonImage from '../assets/images/water-button.png'
 import spotButtonImage from '../assets/images/spot-button.png'
-import geolocationImage from '../assets/images/geolocation.png'
+// import geolocationImage from '../assets/images/geolocation.png'
 // import parksVicImage from '../assets/images/parks.png'
 // import {
 //   findMyLocation,
@@ -65,49 +65,45 @@ const MenuContainer: React.FC = () => {
     console.log('Current spots:', spots)
   }
 
-  const findMyLocation = () => {
-    console.log('Current location:')
-  }
+  //   const findMyLocation = () => {
+  //     console.log('Current location:')
+  //   }
 
   return (
     <div id="menu-container" style={menuStyle}>
-      <Button
+      <ToggleButton
         title="Show Councils"
         id="show-councils"
         backgroundimage={councilImage}
         hidden={false}
         active={false}
-        actionType="toggle"
         onClick={toggleCouncils}
       />
-      <Button
+      <ToggleButton
         title="Parks Vic"
         id="show-parks-vic"
         backgroundimage={councilImage}
         hidden={false}
         active={false}
-        actionType="toggle"
         onClick={toggleParks}
       />
-      <Button
+      <ToggleButton
         title="Show Water Reservoirs"
         id="show-reservoirs"
         backgroundimage={waterButtonImage}
         hidden={false}
         active={false}
-        actionType="toggle"
         onClick={toggleReservoirs}
       />
-      <Button
+      <ToggleButton
         title="Show Flying Spots"
         id="show-spots"
         backgroundimage={spotButtonImage}
         hidden={false}
         active={false}
-        actionType="toggle"
         onClick={toggleSpots}
       />
-      <Button
+      {/* <ActionButton
         title="Find my Location"
         id="show-me"
         backgroundimage={geolocationImage}
@@ -115,7 +111,7 @@ const MenuContainer: React.FC = () => {
         active={false}
         actionType="action"
         onClick={findMyLocation}
-      />
+      /> */}
       {/* You can pass additional props as needed */}
       {/* <Button title="Add Flying Spot" id="add-spots" className="edit" backgroundImage={spotEditButtonImage} /> */}
       {/* <Button title="How to" id="show-info" className="turned-on" backgroundImage={infoImage} /> */}

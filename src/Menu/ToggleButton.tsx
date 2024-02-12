@@ -7,8 +7,7 @@ interface ButtonProps {
   backgroundimage: string
   hidden?: boolean
   active?: boolean
-  actionType: 'toggle' | 'action'
-  onClick: (active?: boolean) => void
+  onClick: (active: boolean) => void
 }
 
 type StyledButtonProps = Omit<ButtonProps, 'actionType' | 'onClick'>
@@ -45,20 +44,16 @@ const StyledButton = styled.button<StyledButtonProps>`
 `
 
 const Button: React.FC<ButtonProps> = (props) => {
-  const { title, id, actionType, backgroundimage, onClick } = props
+  const { title, id, backgroundimage, onClick } = props
   const [active, setActive] = useState<boolean | undefined>(props.active)
   //   const [hidden, setHidden] = useState(props.hidden)
 
   const handleButtonClick = () => {
-    if (actionType == 'toggle') {
-      if (active === undefined) {
-        setActive(false)
-      }
-      setActive(!active)
-      onClick(!active)
-    } else {
-      onClick()
+    if (active === undefined) {
+      setActive(false)
     }
+    setActive(!active)
+    onClick(!active)
   }
 
   return (
