@@ -24,6 +24,6 @@ export const toggleSpots = (active: boolean, mapState: MapState) => {
   console.log('Current spots:', spots)
 }
 
-export const findMyLocation = () => {
+export const findMyLocation = (active: boolean, mapState: MapState) => {
   console.log('Current location:')
 }
