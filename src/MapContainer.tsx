@@ -9,9 +9,7 @@ const MapContainer = () => {
   const [mapState, setMapState] = useState<MapState>(useMapContext())
   const { center, zoom } = mapState
 
-  const [controlPosition, setControlControlPosition] = useState<ControlPosition>(
-    ControlPosition.LEFT_BOTTOM,
-  )
+  const controlPosition = ControlPosition.LEFT_BOTTOM
 
   useEffect(() => {
     console.log('Current state:', mapState)
@@ -24,15 +22,15 @@ const MapContainer = () => {
     }
     setMapState(updatedMapState)
   }
-  const mapOptions = {
-    fullscreenControl: false,
-    mapTypeControl: false,
-    streetViewControl: false,
-    // zoomControl: false,
-    // styles: mapStyles,
-    // minZoom: 2,
-    // maxZoom: 10,
-  }
+  // const mapOptions = {
+  //   fullscreenControl: false,
+  //   mapTypeControl: false,
+  //   streetViewControl: false,
+  //   // zoomControl: false,
+  //   // styles: mapStyles,
+  //   // minZoom: 2,
+  //   // maxZoom: 10,
+  // }
 
   return (
     <div style={{ height: '100vh', width: '100%' }}>
