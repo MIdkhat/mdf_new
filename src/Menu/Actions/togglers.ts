@@ -2,8 +2,21 @@ import { MapState } from '../../types'
 
 export const toggleCouncils = (active: boolean, mapState: MapState) => {
   console.log('councils, ', active ? 'show' : 'hide')
-  const { councils } = mapState.layers
-  console.log('Current councils:', councils)
+
+  // Update the councils array
+  const updatedCouncils = [{ name: 'test' }]
+
+  // Create a new MapState object with the updated councils array
+  // const updatedMapState: MapState = {
+  //   ...mapState,
+  //   layers: {
+  //     ...mapState.layers,
+  //     councils: updatedCouncils,
+  //   },
+  // }
+
+  // Set the new MapState object
+  // setMapState(updatedMapState)
 }
 
 export const toggleParks = (active: boolean, mapState: MapState) => {

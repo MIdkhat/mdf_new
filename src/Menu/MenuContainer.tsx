@@ -1,17 +1,19 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Button from './Button'
 import councilImage from '../assets/images/council.png'
 import waterButtonImage from '../assets/images/water-button.png'
 import spotButtonImage from '../assets/images/spot-button.png'
 import geolocationImage from '../assets/images/geolocation.png'
 // import parksVicImage from '../assets/images/parks.png'
-import {
-  findMyLocation,
-  toggleCouncils,
-  toggleParks,
-  toggleReservoirs,
-  toggleSpots,
-} from './Actions/togglers'
+// import {
+//   findMyLocation,
+//   toggleCouncils,
+//   toggleParks,
+//   toggleReservoirs,
+//   toggleSpots,
+// } from './Actions/togglers'
+import { useMapContext } from '../MapProvider'
+import { MapState } from '../types'
 
 const menuStyle: React.CSSProperties = {
   position: 'absolute',
@@ -24,6 +26,49 @@ const menuStyle: React.CSSProperties = {
 }
 
 const MenuContainer: React.FC = () => {
+  const [mapState, setMapState] = useState<MapState>(useMapContext())
+
+  useEffect(() => {
+    console.log('Current state:', mapState)
+  }, [mapState])
+
+  const toggleCouncils = (active: boolean) => {
+    console.log('councils, ', active ? 'show' : 'hide')
+    const updatedCouncils = [{ name: 'test' }]
+
+    const updatedMapState: MapState = {
+      ...mapState,
+      layers: {
+        ...mapState.layers,
+        councils: updatedCouncils,
+      },
+    }
+    setMapState(updatedMapState)
+
+    console.log('Current state:', mapState.layers.councils)
+  }
+
+  const toggleParks = (active: boolean) => {
+    console.log('parks, ', active ? 'show' : 'hide')
+    console.log('Current state:', mapState.layers.councils)
+  }
+
+  const toggleReservoirs = (active: boolean) => {
+    console.log('reservoirs, ', active ? 'show' : 'hide')
+    const { reservoirs } = mapState.layers
+    console.log('Current reservoirs:', reservoirs)
+  }
+
+  const toggleSpots = (active: boolean) => {
+    console.log('spots, ', active ? 'show' : 'hide')
+    const { spots } = mapState.layers
+    console.log('Current spots:', spots)
+  }
+
+  const findMyLocation = () => {
+    console.log('Current location:')
+  }
+
   return (
     <div id="menu-container" style={menuStyle}>
       <Button
@@ -32,14 +77,16 @@ const MenuContainer: React.FC = () => {
         backgroundimage={councilImage}
         hidden={false}
         active={false}
+        actionType="toggle"
         onClick={toggleCouncils}
       />
       <Button
         title="Parks Vic"
-        id="parks-vic"
+        id="show-parks-vic"
         backgroundimage={councilImage}
         hidden={false}
         active={false}
+        actionType="toggle"
         onClick={toggleParks}
       />
       <Button
@@ -48,6 +95,7 @@ const MenuContainer: React.FC = () => {
         backgroundimage={waterButtonImage}
         hidden={false}
         active={false}
+        actionType="toggle"
         onClick={toggleReservoirs}
       />
       <Button
@@ -56,6 +104,7 @@ const MenuContainer: React.FC = () => {
         backgroundimage={spotButtonImage}
         hidden={false}
         active={false}
+        actionType="toggle"
         onClick={toggleSpots}
       />
       <Button
@@ -64,6 +113,7 @@ const MenuContainer: React.FC = () => {
         backgroundimage={geolocationImage}
         hidden={false}
         active={false}
+        actionType="action"
         onClick={findMyLocation}
       />
       {/* You can pass additional props as needed */}

@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { useMapContext } from '../MapProvider'
-import { MapState } from '../types'
 
 interface ButtonProps {
   title: string
@@ -9,9 +7,13 @@ interface ButtonProps {
   backgroundimage: string
   hidden?: boolean
   active?: boolean
-  onClick: (active: boolean, mapState: MapState) => void | (() => void)
+  actionType: 'toggle' | 'action'
+  onClick: (active?: boolean) => void
 }
-const StyledButton = styled.button<ButtonProps>`
+
+type StyledButtonProps = Omit<ButtonProps, 'actionType' | 'onClick'>
+
+const StyledButton = styled.button<StyledButtonProps>`
   width: 40px;
   height: 40px;
   background-size: 80px 40px;
@@ -43,14 +45,20 @@ const StyledButton = styled.button<ButtonProps>`
 `
 
 const Button: React.FC<ButtonProps> = (props) => {
-  const { title, id, backgroundimage, onClick } = props
-  const [active, setActive] = useState(props.active)
+  const { title, id, actionType, backgroundimage, onClick } = props
+  const [active, setActive] = useState<boolean | undefined>(props.active)
   //   const [hidden, setHidden] = useState(props.hidden)
-  const mapState = useMapContext()
 
   const handleButtonClick = () => {
-    setActive(!active)
-    onClick(!active, mapState)
+    if (actionType == 'toggle') {
+      if (active === undefined) {
+        setActive(false)
+      }
+      setActive(!active)
+      onClick(!active)
+    } else {
+      onClick()
+    }
   }
 
   return (
