@@ -5,7 +5,13 @@ import waterButtonImage from '../assets/images/water-button.png'
 import spotButtonImage from '../assets/images/spot-button.png'
 import geolocationImage from '../assets/images/geolocation.png'
 // import parksVicImage from '../assets/images/parks.png'
-import { toggleCouncils, toggleParks, toggleReservoirs, toggleSpots } from './Actions/togglers'
+import {
+  findMyLocation,
+  toggleCouncils,
+  toggleParks,
+  toggleReservoirs,
+  toggleSpots,
+} from './Actions/togglers'
 
 const menuStyle: React.CSSProperties = {
   position: 'absolute',
@@ -58,7 +64,7 @@ const MenuContainer: React.FC = () => {
         backgroundimage={geolocationImage}
         hidden={false}
         active={false}
-        onClick={console.log('Fing Me')}
+        onClick={findMyLocation}
       />
       {/* You can pass additional props as needed */}
       {/* <Button title="Add Flying Spot" id="add-spots" className="edit" backgroundImage={spotEditButtonImage} /> */}

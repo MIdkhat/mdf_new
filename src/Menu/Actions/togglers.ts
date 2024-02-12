@@ -23,3 +23,7 @@ export const toggleSpots = (active: boolean, mapState: MapState) => {
   const { spots } = mapState.layers
   console.log('Current spots:', spots)
 }
+
+export const findMyLocation = () => {
+  console.log('Current location:')
+}
