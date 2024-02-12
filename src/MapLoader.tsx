@@ -17,7 +17,7 @@ export const MapLoader: React.FC = () => {
     script.defer = true
     script.onload = () => {
       console.log('Google Maps API loaded successfully')
-      setApiLoaded(true) // Set flag when API is loaded
+      setApiLoaded(true)
     }
     script.onerror = () => {
       console.error('Error loading Google Maps API')
@@ -30,5 +30,5 @@ export const MapLoader: React.FC = () => {
     }
   }, [apiKey])
 
-  return apiLoaded ? <Map /> : <p>loading</p> // Render Map component only if API is loaded
+  return apiLoaded ? <Map /> : <p>loading</p>
 }

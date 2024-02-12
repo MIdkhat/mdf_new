@@ -26,7 +26,7 @@ const StyledButton = styled.button<StyledButtonProps>`
   cursor: pointer;
   outline: none;
   padding: 0;
-  border: 1px solid transparent;
+  border: 1px solid black;
   border-radius: 3px;
   font-size: 12px;
   font-weight: 700;
@@ -48,7 +48,8 @@ const Button: React.FC<ButtonProps> = (props) => {
   const [active, setActive] = useState<boolean | undefined>(props.active)
   //   const [hidden, setHidden] = useState(props.hidden)
 
-  const handleButtonClick = () => {
+  const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    event.currentTarget.blur()
     if (active === undefined) {
       setActive(false)
     }
