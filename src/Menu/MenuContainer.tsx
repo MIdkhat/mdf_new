@@ -58,6 +58,7 @@ const MenuContainer: React.FC = () => {
         backgroundimage={geolocationImage}
         hidden={false}
         active={false}
+        onClick={console.log('Fing Me')}
       />
       {/* You can pass additional props as needed */}
       {/* <Button title="Add Flying Spot" id="add-spots" className="edit" backgroundImage={spotEditButtonImage} /> */}
