@@ -1,6 +1,6 @@
 import React from 'react'
 import GoogleMapReact from 'google-map-react'
-import { GoogleMap } from '@react-google-maps/api'
+// import { GoogleMap } from '@react-google-maps/api'
 import MenuContainer from './Menu/MenuContainer'
 
 const center = {

@@ -42,7 +42,7 @@ const StyledButton = styled.button<ButtonProps>`
 const Button: React.FC<ButtonProps> = (props) => {
   const { title, id, backgroundimage } = props
   const [turnedOn, setTurnedOn] = useState(props.turnedOn)
-  const [hidden, setHidden] = useState(props.hidden)
+  //   const [hidden, setHidden] = useState(props.hidden)
 
   const handleButtonClick = () => {
     setTurnedOn(!turnedOn) // Toggle turnedOn state
@@ -55,7 +55,7 @@ const Button: React.FC<ButtonProps> = (props) => {
       title={title}
       id={id}
       backgroundimage={backgroundimage}
-      hidden={hidden}
+      hidden={props.hidden}
       turnedOn={turnedOn}
       className={turnedOn ? 'turned-on' : ''}
       onClick={handleButtonClick}
